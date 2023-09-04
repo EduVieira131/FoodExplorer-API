@@ -19,3 +19,5 @@ class productsController {
     return res.status(201).json
   }
 }
+
+module.exports = productsController
