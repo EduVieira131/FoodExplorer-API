@@ -1,5 +1,5 @@
 const express = require('express')
-const AppError = require("./utils/AppError")
+const AppError = require('./utils/AppError')
 const routes = require('./routes')
 
 const app = express()
@@ -8,16 +8,16 @@ app.use(express.json())
 app.use(routes)
 
 app.use((error, res) => {
-  if(error instanceof AppError) {
-    return res.statusCode(error.statusCode).json({
-      status: "error",
+  if (error instanceof AppError) {
+    return res.status(error.statusCode).json({
+      status: 'error',
       message: error.message
     })
   }
 
-  return res.statusCode(500).json({
-    status:"error",
-    message: error.message
+  return res.status(500).json({
+    status: 'error',
+    message: 'Internal server error'
   })
 })
 
