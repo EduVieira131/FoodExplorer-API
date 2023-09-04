@@ -11,3 +11,15 @@ Content-Type: application/json
 }
 
 ###
+
+# @name create_product
+POST {{baseUrl}}/product
+Content-Type: application/json
+
+{
+  "name": "tomate",
+  "category": "PF",
+  "price": 50,
+  "description": "Tomate fresco",
+  "image": "teste"
+}
