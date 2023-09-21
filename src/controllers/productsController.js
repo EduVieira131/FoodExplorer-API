@@ -16,7 +16,7 @@ class productsController {
       image
     })
 
-    return res.status(201).json
+    return res.status(201).json()
   }
 }
 

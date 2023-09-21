@@ -2,7 +2,10 @@ const knex = require('../../database/knex')
 
 class ProductsRepository {
   async findProductByNameAndCategory(name, category) {
-    const product = await knex('products').where({ name }).where({ category })
+    const product = await knex('products')
+      .whereLike('products.name', `%${name}%`)
+      .where({ category })
+      .first()
 
     return product
   }
