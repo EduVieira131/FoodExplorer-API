@@ -21,6 +21,12 @@ class ProductsRepository {
 
     return { id: productId }
   }
+
+  async index() {
+    const products = await knex('products')
+
+    return products
+  }
 }
 
 module.exports = ProductsRepository

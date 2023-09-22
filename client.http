@@ -23,3 +23,9 @@ Content-Type: application/json
   "description": "Tomates frescos",
   "image": "teste"
 }
+
+###
+
+# @name get_products
+GET {{baseUrl}}/products
+Content-Type: application/xhtml+xml
