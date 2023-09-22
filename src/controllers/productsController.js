@@ -5,13 +5,14 @@ const ProductsIndexService = require('../services/productsServices/ProductsIndex
 
 class productsController {
   async create(req, res) {
-    const { name, category, price, description, image } = req.body
+    const { name, ingredients, category, price, description, image } = req.body
 
     const productsRepository = new ProductsRepository()
     const productsCreateServices = new ProductsCreateService(productsRepository)
 
     await productsCreateServices.execute({
       name,
+      ingredients,
       category,
       price,
       description,

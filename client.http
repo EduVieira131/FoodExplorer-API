@@ -18,6 +18,7 @@ Content-Type: application/json
 
 {
   "name": "tomate com frango",
+  "ingredients": ["tomate", "frango"],
   "category": "PF",
   "price": 50,
   "description": "Tomates frescos",
