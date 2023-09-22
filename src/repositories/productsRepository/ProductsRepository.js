@@ -45,9 +45,27 @@ class ProductsRepository {
 
     return { product_id }
   }
-  s
-  async index() {
+
+  async getProductsByName(name) {
+    console.log(name)
     const products = await knex('products')
+      .whereLike('products.name', `%${name}%`)
+      .first()
+
+    return products
+  }
+
+  async getProductsByIngredients(ingredients) {
+    const filteredIngredients = ingredients
+      .split(',')
+      .map(ingredient => ingredient.trim())
+
+    const products = await knex('ingredients')
+      .select(['products.id', 'products.name', 'products.description'])
+      .whereIn('ingredients.name', filteredIngredients)
+      .innerJoin('products', 'products.id', 'ingredients.product_id')
+      .groupBy('products.id')
+      .orderBy('products.name')
 
     return products
   }

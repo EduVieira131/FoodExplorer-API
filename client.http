@@ -17,16 +17,16 @@ POST {{baseUrl}}/products
 Content-Type: application/json
 
 {
-  "name": "tomate com frango",
-  "ingredients": ["tomate", "frango"],
+  "name": "massa com frango",
+  "ingredients": ["frango", "massa"],
   "category": "PF",
   "price": 50,
-  "description": "Tomates frescos",
+  "description": "Massa fresca com frango",
   "image": "teste"
 }
 
 ###
 
-# @name get_products
-GET {{baseUrl}}/products
+# @name get_all_products
+GET {{baseUrl}}/products?ingredients=massa,tomate
 Content-Type: application/xhtml+xml

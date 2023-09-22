@@ -23,12 +23,14 @@ class productsController {
   }
 
   async index(req, res) {
+    const { name, ingredients } = req.query
+
     const productsRepository = new ProductsRepository()
     const productsIndexService = new ProductsIndexService(productsRepository)
 
-    const products = await productsIndexService.execute()
+    const products = await productsIndexService.execute(name, ingredients)
 
-    return res.status(201).json(products)
+    return res.status(200).json(products)
   }
 }
 

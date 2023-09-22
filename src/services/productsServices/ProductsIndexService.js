@@ -5,8 +5,16 @@ class ProductsIndexService {
     this.productsRepository = productsRepository
   }
 
-  async execute() {
-    const products = await this.productsRepository.index()
+  async execute(name, ingredients) {
+    let products
+
+    if (name) {
+      products = await this.productsRepository.getProductsByName(name)
+    }
+
+    if (ingredients) {
+      products = await this.productsRepository.getProductsByIngredients(ingredients)
+    }
 
     if (!products) {
       throw new AppError('Não foi possível buscar os produtos.')
