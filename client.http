@@ -28,5 +28,5 @@ Content-Type: application/json
 ###
 
 # @name get_all_products
-GET {{baseUrl}}/products?ingredients=massa,tomate
+GET {{baseUrl}}/products?searchTerms=massa
 Content-Type: application/xhtml+xml

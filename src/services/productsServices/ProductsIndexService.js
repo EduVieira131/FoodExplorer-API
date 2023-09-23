@@ -5,15 +5,25 @@ class ProductsIndexService {
     this.productsRepository = productsRepository
   }
 
-  async execute(name, ingredients) {
+  async execute(searchTerms) {
     let products
 
-    if (name) {
-      products = await this.productsRepository.getProductsByName(name)
+    if (!searchTerms) {
+      throw new AppError(
+        'Por favor, insira o nome de uma receita ou ingrediente.'
+      )
     }
 
-    if (ingredients) {
-      products = await this.productsRepository.getProductsByIngredients(ingredients)
+    const filteredSearchTerms = searchTerms
+      .split(',')
+      .map(searchTerm => searchTerm.trim())
+
+    if (filteredSearchTerms.length > 1) {
+      products = await this.productsRepository.indexByIngredients(
+        filteredSearchTerms
+      )
+    } else {
+      products = await this.productsRepository.indexByName(searchTerms)
     }
 
     if (!products) {

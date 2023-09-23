@@ -46,28 +46,30 @@ class ProductsRepository {
     return { product_id }
   }
 
-  async getProductsByName(name) {
-    console.log(name)
-    const products = await knex('products')
-      .whereLike('products.name', `%${name}%`)
-      .first()
+  async indexByName(searchTerm) {
+    const searchResult = await knex('products').whereLike(
+      'products.name',
+      `%${searchTerm}%`
+    )
 
-    return products
+    return searchResult
   }
 
-  async getProductsByIngredients(ingredients) {
-    const filteredIngredients = ingredients
-      .split(',')
-      .map(ingredient => ingredient.trim())
-
-    const products = await knex('ingredients')
-      .select(['products.id', 'products.name', 'products.description'])
-      .whereIn('ingredients.name', filteredIngredients)
+  async indexByIngredients(searchTerm) {
+    const searchResult = await knex('ingredients')
+      .select([
+        'products.id',
+        'products.name',
+        'products.price',
+        'products.description',
+        'products.image'
+      ])
+      .whereIn('ingredients.name', searchTerm)
       .innerJoin('products', 'products.id', 'ingredients.product_id')
       .groupBy('products.id')
       .orderBy('products.name')
 
-    return products
+    return searchResult
   }
 }
 
