@@ -1,4 +1,3 @@
-const { response } = require('express')
 const ProductsRepository = require('../repositories/productsRepository/ProductsRepository')
 const ProductsCreateService = require('../services/productsServices/ProductsCreateService')
 const ProductsIndexService = require('../services/productsServices/ProductsIndexService')

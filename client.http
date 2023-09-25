@@ -30,3 +30,9 @@ Content-Type: application/json
 # @name get_all_products
 GET {{baseUrl}}/products?searchTerms=massa
 Content-Type: application/xhtml+xml
+
+###
+
+# @name get_all_categories
+GET {{baseUrl}}/categories
+Content-Type: application/xhtml+xml
