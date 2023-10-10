@@ -1,6 +1,7 @@
 const ProductsRepository = require('../repositories/productsRepository/ProductsRepository')
 const ProductsCreateService = require('../services/productsServices/ProductsCreateService')
 const ProductsIndexService = require('../services/productsServices/ProductsIndexService')
+const ProductsDeleteService = require('../services/productsServices/ProductsDeleteService')
 
 class productsController {
   async create(req, res) {
@@ -30,6 +31,17 @@ class productsController {
     const products = await productsIndexService.execute(searchTerms)
 
     return res.status(200).json(products)
+  }
+
+  async delete(req, res) {
+    const { id } = req.params
+
+    const productsRepository = new ProductsRepository()
+    const productsDeleteService = new ProductsDeleteService(productsRepository)
+
+    await productsDeleteService.execute(id)
+
+    return res.status(200).json()
   }
 }
 

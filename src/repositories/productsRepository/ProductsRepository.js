@@ -71,6 +71,10 @@ class ProductsRepository {
 
     return searchResult
   }
+
+  async delete(id) {
+    await knex('products').where({ id }).delete()
+  }
 }
 
 module.exports = ProductsRepository

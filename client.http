@@ -33,6 +33,12 @@ Content-Type: application/xhtml+xml
 
 ###
 
+# @name delete_product
+DELETE {{baseUrl}}/products/8
+Content-Type: application/xhtml+xml
+
+###
+
 # @name get_all_categories
 GET {{baseUrl}}/categories
 Content-Type: application/xhtml+xml
