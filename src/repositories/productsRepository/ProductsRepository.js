@@ -75,6 +75,16 @@ class ProductsRepository {
   async delete(id) {
     await knex('products').where({ id }).delete()
   }
+
+  async show(id) {
+    const product = await knex('products').where({ id }).first()
+    const ingredients = await knex('ingredients')
+      .where({ product_id: id })
+      .orderBy('name')
+    const categories = await knex('categories').where({ product_id: id })
+
+    return { ...product, ingredients, categories }
+  }
 }
 
 module.exports = ProductsRepository
