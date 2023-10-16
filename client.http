@@ -12,6 +12,18 @@ Content-Type: application/json
 
 ###
 
+# @name create_admin_account
+POST {{baseUrl}}/admin
+Content-Type: application/json
+
+{
+  "name": "Eduardo",
+  "email": "edu@test.com",
+  "password": "123"
+}
+
+###
+
 # @name create_product
 POST {{baseUrl}}/products
 Content-Type: application/json
@@ -39,7 +51,7 @@ Content-Type: application/xhtml+xml
 
 ###
 
-# @name delete_product
+# @name show_product
 GET {{baseUrl}}/products/10
 Content-Type: application/xhtml+xml
 

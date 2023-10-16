@@ -1,9 +1,9 @@
 exports.up = knex => 
-  knex.schema.createTable("users", table => {
+  knex.schema.createTable("admin", table => {
     table.increments("id").primary()
     table.text("name")
     table.text("email")
     table.text("password")
   } )
 
-  exports.down = knex => knex.schema.dropTable("users")
+  exports.down = knex => knex.schema.dropTable("admin")
