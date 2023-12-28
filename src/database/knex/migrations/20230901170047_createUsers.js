@@ -4,6 +4,7 @@ exports.up = knex =>
     table.text("name")
     table.text("email")
     table.text("password")
+    table.boolean('isAdmin').default(false)
   } )
 
   exports.down = knex => knex.schema.dropTable("users")

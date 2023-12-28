@@ -7,19 +7,8 @@ Content-Type: application/json
 {
   "name": "Eduardo4",
   "email": "edu4@test.com",
-  "password": "123"
-}
-
-###
-
-# @name create_admin_account
-POST {{baseUrl}}/admin
-Content-Type: application/json
-
-{
-  "name": "Eduardo",
-  "email": "edu@test.com",
-  "password": "123"
+  "password": "123",
+  "isAdmin": true
 }
 
 ###

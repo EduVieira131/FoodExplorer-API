@@ -15,7 +15,8 @@ describe('UserCreateService', () => {
     const user = {
       name: "User test",
       email: "user@test.com",
-      password: "123"
+      password: "123",
+      isAdmin: false
     }
 
     const userCreated = await userCreateService.execute(user)
@@ -27,13 +28,15 @@ describe('UserCreateService', () => {
     const user1 =  {
       name: "User test 1",
       email: "user@test.com",
-      password: "123"
+      password: "123",
+      isAdmin: false
     }
 
     const user2 =  {
       name: "User test 2",
       email: "user@test.com",
-      password: "123"
+      password: "123",
+      isAdmin: false
     }
 
     await userCreateService.execute(user1)
