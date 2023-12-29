@@ -5,10 +5,21 @@ POST {{baseUrl}}/users
 Content-Type: application/json
 
 {
-  "name": "Eduardo4",
-  "email": "edu4@test.com",
+  "name": "Eduardo",
+  "email": "edu1@test.com",
   "password": "123",
   "isAdmin": true
+}
+
+###
+
+# @name create_session
+POST {{baseUrl}}/sessions
+Content-Type: application/json
+
+{
+  "email": "edu1@test.com",
+  "password": "123"
 }
 
 ###
