@@ -3,6 +3,7 @@ const ProductsCreateService = require('../services/productsServices/ProductsCrea
 const ProductsIndexService = require('../services/productsServices/ProductsIndexService')
 const ProductsDeleteService = require('../services/productsServices/ProductsDeleteService')
 const ProductsShowService = require('../services/productsServices/ProductShowService')
+const ProductsUpdateService = require('../services/productsServices/ProductsUpdateService')
 
 class productsController {
   async create(req, res) {
@@ -21,6 +22,26 @@ class productsController {
     })
 
     return res.status(201).json()
+  }
+
+  async update(req, res) {
+    const { id } = req.params
+    const { name, ingredients, category, price, description, image } = req.body
+
+    const productsRepository = new ProductsRepository()
+    const productsUpdateService = new ProductsUpdateService(productsRepository)
+
+    const product = await productsUpdateService.execute({
+      id,
+      name,
+      ingredients,
+      category,
+      price,
+      description,
+      image
+    })
+
+    return res.status(200).json(product)
   }
 
   async index(req, res) {
@@ -55,7 +76,6 @@ class productsController {
 
     return res.status(200).json(product)
   }
-  // update
 }
 
 module.exports = productsController

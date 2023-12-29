@@ -9,17 +9,13 @@ class ProductsRepository {
     return product
   }
 
-  async create({
-    name,
-    ingredients,
-    category,
-    price,
-    description,
-    image,
-    res
-  }) {
-    console.log(name)
+  async findProductById(id) {
+    const product = await knex('products').where({ id }).first()
 
+    return product
+  }
+
+  async create({ name, ingredients, category, price, description, image }) {
     const [product_id] = await knex('products').insert({
       name,
       price,
@@ -44,6 +40,38 @@ class ProductsRepository {
     await knex('categories').insert(categoriesInsert)
 
     return { product_id }
+  }
+
+  async update({ updatedProductData }) {
+    const updatedProduct = await knex('products')
+      .update({
+        name: updatedProductData.name,
+        price: updatedProductData.price,
+        description: updatedProductData.description,
+        image: updatedProductData.image
+      })
+      .where({ id: updatedProductData.id })
+
+    const updatedCategory = await knex('categories')
+      .update({
+        name: updatedProductData.category
+      })
+      .where({ product_id: Number(updatedProductData.id) })
+
+    await knex('ingredients')
+      .where({ product_id: updatedProductData.id })
+      .delete()
+
+    const updatedIngredients = updatedProductData.ingredients.map(
+      async ingredient => {
+        await knex('ingredients').insert({
+          name: ingredient,
+          product_id: updatedProductData.id
+        })
+      }
+    )
+
+    return { updatedProduct, updatedCategory, updatedIngredients }
   }
 
   async indexByName(searchTerm) {
