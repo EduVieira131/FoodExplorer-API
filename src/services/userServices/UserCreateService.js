@@ -7,11 +7,9 @@ class UserCreateService {
   }
 
   async execute({ name, email, password, isAdmin }) {
-    if(password.lenght < 6 ) {
+    if(password.length < 6 ) {
       throw new AppError('A senha deve conter 6 ou mais caracteres.')
     }
-
-    
 
     const validateUserExistence = await this.userRepository.findByEmail(email)
 
