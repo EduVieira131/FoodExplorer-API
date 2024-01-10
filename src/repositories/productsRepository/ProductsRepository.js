@@ -76,8 +76,20 @@ class ProductsRepository {
 
   async indexProducts() {
     const productsList = await knex('products')
+    const categoriesList = await knex('categories')
 
-    return productsList
+    const productsListWithCategories = productsList.map(product => {
+      const productCategory = categoriesList.find(
+        category => category.product_id === product.id
+      )
+
+      return {
+        ...product,
+        category: productCategory
+      }
+    })
+
+    return productsListWithCategories
   }
 
   async indexByName(searchTerm) {
