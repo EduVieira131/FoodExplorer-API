@@ -74,6 +74,12 @@ class ProductsRepository {
     return { updatedProduct, updatedCategory, updatedIngredients }
   }
 
+  async indexProducts() {
+    const productsList = await knex('products')
+
+    return productsList
+  }
+
   async indexByName(searchTerm) {
     const searchResult = await knex('products').whereLike(
       'products.name',

@@ -55,7 +55,7 @@ Content-Type: application/json
 ###
 
 # @name get_all_products
-GET {{baseUrl}}/products?searchTerms=massa
+GET {{baseUrl}}/products
 Content-Type: application/xhtml+xml
 
 ###

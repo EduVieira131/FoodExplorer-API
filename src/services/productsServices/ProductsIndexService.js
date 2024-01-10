@@ -9,9 +9,10 @@ class ProductsIndexService {
     let products
 
     if (!searchTerms) {
-      throw new AppError(
-        'Por favor, insira o nome de uma receita ou ingrediente.'
-      )
+      const products = await this.productsRepository.indexProducts()
+      console.log(products)
+
+      return products
     }
 
     const filteredSearchTerms = searchTerms
