@@ -29,11 +29,11 @@ POST {{baseUrl}}/products
 Content-Type: application/json
 
 {
-  "name": "massa com frango",
-  "ingredients": ["frango", "massa"],
-  "category": "PF",
-  "price": 50,
-  "description": "Massa fresca com frango",
+  "name": "Strogonoff",
+  "ingredients": ["Arroz", "Frango", "Tomate"],
+  "category": "Refeição",
+  "price": 40,
+  "description": "Strogonoff de frango com molho",
   "image": "teste"
 }
 
@@ -75,3 +75,10 @@ Content-Type: application/xhtml+xml
 # @name get_all_categories
 GET {{baseUrl}}/categories
 Content-Type: application/xhtml+xml
+
+###
+
+# @name show_ingredients
+GET {{baseUrl}}/ingredients/3
+Content-Type: application/xhtml+xml
+

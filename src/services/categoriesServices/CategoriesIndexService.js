@@ -9,7 +9,7 @@ class CategoriesIndexService {
     const categories = this.categoriesRepository.index()
 
     if (!categories) {
-      throw new AppError('Não foi possível buscar os ingredientes')
+      throw new AppError('Não foi possível buscar as categorias')
     }
 
     return categories
