@@ -93,16 +93,28 @@ class ProductsRepository {
   }
 
   async indexByName(searchTerm) {
-    const searchResult = await knex('products').whereLike(
+    const productsList = await knex('products').whereLike(
       'products.name',
       `%${searchTerm}%`
     )
+    const categoriesList = await knex('categories')
 
-    return searchResult
+    const productsListWithCategories = productsList.map(product => {
+      const productCategory = categoriesList.find(
+        category => category.product_id === product.id
+      )
+
+      return {
+        ...product,
+        category: productCategory
+      }
+    })
+
+    return productsListWithCategories
   }
 
   async indexByIngredients(searchTerm) {
-    const searchResult = await knex('ingredients')
+    const productsList = await knex('ingredients')
       .select([
         'products.id',
         'products.name',
@@ -115,7 +127,20 @@ class ProductsRepository {
       .groupBy('products.id')
       .orderBy('products.name')
 
-    return searchResult
+    const categoriesList = await knex('categories')
+
+    const productsListWithCategories = productsList.map(product => {
+      const productCategory = categoriesList.find(
+        category => category.product_id === product.id
+      )
+
+      return {
+        ...product,
+        category: productCategory
+      }
+    })
+
+    return productsListWithCategories
   }
 
   async delete(id) {

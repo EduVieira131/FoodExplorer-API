@@ -60,6 +60,12 @@ Content-Type: application/xhtml+xml
 
 ###
 
+# @name get_products
+GET {{baseUrl}}/products?searchTerms=Arroz
+Content-Type: application/xhtml+xml
+
+###
+
 # @name delete_product
 DELETE {{baseUrl}}/products/8
 Content-Type: application/xhtml+xml
