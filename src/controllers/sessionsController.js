@@ -2,22 +2,25 @@ const SessionsRepository = require("../repositories/sessionsRepository/SessionsR
 const SessionsCreateService = require("../services/sessionsServices/SessionsCreateService");
 
 class sessionsController {
-  async create(req, res) {
-    const { email, password } = req.body;
+  async create(request, response) {
+    const { email, password } = request.body;
 
     const sessionsRepository = new SessionsRepository();
     const sessionsCreateService = new SessionsCreateService(sessionsRepository);
 
-    const session = await sessionsCreateService.execute({ email, password });
+    const { token, user } = await sessionsCreateService.execute({
+      email,
+      password,
+    });
 
-    res.cookie("token", session.token, {
+    response.cookie("token", token, {
       httpOnly: true,
       sameSite: "none",
       secure: true,
       maxAge: 15 * 60 * 1000,
     });
 
-    return res.status(200).json(session.user);
+    return response.status(200).json({ user });
   }
 }
 

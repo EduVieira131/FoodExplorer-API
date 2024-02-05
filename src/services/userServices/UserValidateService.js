@@ -1,18 +1,18 @@
 const AppError = require("../../utils/AppError");
 
 class UserValidateService {
-  constructor(userRepositoy) {
-    this.userRepositoy = userRepositoy;
+  constructor(userRepository) {
+    this.userRepository = userRepository;
   }
 
-  async execute({ user }) {
-    const checkUserExists = await this.userRepositoy.get(user.id);
+  async execute(user) {
+    const checkUserExists = await this.userRepository.get(user.id);
 
     if (checkUserExists.length === 0) {
       throw new AppError("Unauthorized", 401);
     }
 
-    return;
+    return checkUserExists;
   }
 }
 
