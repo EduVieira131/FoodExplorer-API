@@ -1,10 +1,13 @@
-const { Router } = require('express')
+const { Router } = require("express");
+const ensureAuthentication = require("../middlewares/ensureAuthentication");
 
-const ingredientsRouter = Router()
-const IngredientsController = require('../controllers/ingredientsController')
+const ingredientsRouter = Router();
+const IngredientsController = require("../controllers/ingredientsController");
 
-const ingredientsController = new IngredientsController()
+const ingredientsController = new IngredientsController();
 
-ingredientsRouter.get('/:productId', ingredientsController.show)
+ingredientsRouter.use(ensureAuthentication);
 
-module.exports = ingredientsRouter
+ingredientsRouter.get("/:productId", ingredientsController.show);
+
+module.exports = ingredientsRouter;
