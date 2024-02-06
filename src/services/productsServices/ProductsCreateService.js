@@ -1,16 +1,16 @@
-const AppError = require('../../utils/AppError')
+const AppError = require("../../utils/AppError");
 
 class ProductsCreateService {
   constructor(productsRepository) {
-    this.productsRepository = productsRepository
+    this.productsRepository = productsRepository;
   }
 
   async execute({ name, ingredients, category, price, description, image }) {
     const validateProductExistence =
-      await this.productsRepository.findProductByName(name)
+      await this.productsRepository.findProductByName(name);
 
     if (validateProductExistence) {
-      throw new AppError('Produto já existente nessa categoria.')
+      throw new AppError("Produto já existente nessa categoria.");
     }
 
     const productCreated = await this.productsRepository.create({
@@ -19,11 +19,11 @@ class ProductsCreateService {
       category,
       price,
       description,
-      image
-    })
+      image,
+    });
 
-    return productCreated
+    return { productCreated };
   }
 }
 
-module.exports = ProductsCreateService
+module.exports = ProductsCreateService;

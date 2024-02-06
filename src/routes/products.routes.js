@@ -33,7 +33,7 @@ productsRouter.delete(
 );
 productsRouter.get("/:id", productsController.show);
 productsRouter.patch(
-  "/image",
+  "/image/:productId",
   verifyUserAuthorization("admin"),
   uploadFiles.single("image"),
   productImageController.update
