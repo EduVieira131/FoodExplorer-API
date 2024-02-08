@@ -29,8 +29,10 @@ npm install
 npm run dev
 ```
 
+Or, see the project [here](https://foodexplorerfinalproject.netlify.app/).
+
 > **Note**
-> To test the functionality of the project, create your account or use an already created admin account for testing purposes:
+> To test the functionality of the project, create your account or use an already created test account for testing purposes:
 >
 > - Email: admin@admin.com </br>
 > - Password: 123456
