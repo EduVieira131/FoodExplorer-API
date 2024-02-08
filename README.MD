@@ -13,7 +13,7 @@ The back-end of the project (this repository) was developed in Node.js and Knex,
 </p>
 
 ### Tech stack:
- 
+
 - [React JS](https://react.dev)
 - [Node.js](https://nodejs.org/en)
 - [Git/GitHub](https://git-scm.com)
@@ -28,3 +28,9 @@ cd FoodExplorer-API
 npm install
 npm run dev
 ```
+
+> **Note**
+> To test the functionality of the project, create your account or use an already created admin account for testing purposes:
+>
+> - Email: admin@admin.com </br>
+> - Password: 123456
