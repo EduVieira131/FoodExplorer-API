@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: ["https://foodexplorerfinalproject.netlify.app/"],
+    origin: ["https://foodexplorerfinalproject.netlify.app"],
     credentials: true,
   })
 );
