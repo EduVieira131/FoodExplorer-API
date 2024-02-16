@@ -8,7 +8,9 @@ class UserValidateService {
   async execute(user) {
     const checkUserExists = await this.userRepository.get(user.id);
 
-    if (checkUserExists.length === 0) {
+    const userValidation = checkUserExists.length === 0;
+
+    if (userValidation) {
       throw new AppError("Unauthorized", 401);
     }
 
